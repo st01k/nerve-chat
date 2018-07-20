@@ -6,7 +6,7 @@ const express = require('express'),
       ip = require('ip')
 
 const app = express(),
-      port = 8080,
+      port = 25922,
       host = ip.address(),
       // server = app.listen(process.argv[2], host),
       server = app.listen(port, host),
