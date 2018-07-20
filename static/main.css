@@ -1,0 +1,8 @@
+body {
+  background-color: #1e1e1e;
+  color: whitesmoke;
+}
+
+.card .card-content {
+  padding-bottom: 70px;
+}

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>nerve chat</title>
+
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="materialize.min.css"  media="screen,projection"/>
+    <link rel="stylesheet" href="main.css">
+  </head>
+  <body>
+    <div class="row valign-wrapper">
+      <div class="col s12 m12">
+        <div class="card grey darken-4">
+          <div class="card-content white-text">
+            <span class="card-title">nerve chat</span>
+
+            <div class="input-field col s6">
+              <input id="name" type="text" class="validate">
+              <label for="name">Name</label>
+            </div>
+
+            <!-- <label for="name">Name:</label>
+            <input type="text" id="name"/>
+            <button id="say_hello">Say Hello!</button> -->
+
+            <div class="input-field col s6">
+              <input id="room" type="text" class="validate">
+              <label for="room">Room</label>
+            </div>
+
+            <!-- <label for="room">Room:</label>
+            <input type="text" id="room"/>
+            <button id="join_room">Join Room</button> -->
+
+            <ul id="list" class="center-align"></ul>
+          </div>
+          <div class="card-action">
+            <a href="#" id="say_hello">Say Hello</a>
+            <a href="#" id="join_room" class="right">Join Room</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      var socket = io({transports: ['websocket'], upgrade: false});
+      document.getElementById('join_room').addEventListener('click', (e) => {
+        socket.emit('room.join', document.getElementById('room').value);
+      });
+
+      document.getElementById('say_hello').addEventListener('click', (e) => {
+        socket.emit('event',
+        { name: document.getElementById('name').value,
+        room: document.getElementById('room').value});
+      });
+
+      var addLi = (message) => {
+        var li = document.createElement('li');
+        li.appendChild(document.createTextNode(message));
+        document.getElementById('list').appendChild(li);
+      };
+
+      socket.on('event', addLi);
+    </script>
+    <script src="main.js"></script>
+    <script type="text/javascript" src="materialize.min.js"></script>
+  </body>
+</html>
