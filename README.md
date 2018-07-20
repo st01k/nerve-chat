@@ -1,6 +1,7 @@
 # nerve-chat
 
 This app is a multi-server capable chat (messaging) interface built on redis, using socket.io.
+It requires an instance of Redis running on port 16379.  
 
 ## To Use
 
