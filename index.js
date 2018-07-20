@@ -20,7 +20,7 @@ io.on('connection', (socket) => {
 
     setTimeout(() => {
       socket.join(room);
-      socket.emit('event', 'Joined room ' + room);
+      socket.emit('event', 'Joined ' + room);
       socket.broadcast.to(room).emit('event', 'Someone joined room ' + room);
     }, 0);
   })
@@ -28,4 +28,9 @@ io.on('connection', (socket) => {
   socket.on('event', (e) => {
     socket.broadcast.to(e.room).emit('event', e.name + ' says hello!');
   });
+
+  socket.on('message.send', (e) => {
+    socket.emit('message.send', e.message)
+    socket.broadcast.to(e.room).emit('message.send', e.name + ' says: ' + e.message)
+  })
 });
