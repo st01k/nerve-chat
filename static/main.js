@@ -7,25 +7,28 @@ let btnJoin = document.getElementById('join_room')
 let btnSend = document.getElementById('send_message')
 
 // DOM listeners
-btnJoin.addEventListener('click', (e) => {
+btnJoin.addEventListener('click', joinRoom);
+
+function joinRoom(e) {
   let room = document.getElementById('room').value
   let name = document.getElementById('name').value
   if (name !== '' && room !== '') {
     socket.emit('room.join', {room, name});
-    document.getElementById('disconnected').classList.add('hide')
-    document.getElementById('connected').classList.remove('hide')
+    btnJoin.classList.remove('blue')
+    btnJoin.classList.add('green')
+    btnJoin.innerText = 'change channel'
   }
   else {
     M.toast({html:'you must enter a username and channel to connect'})
   }
-});
+}
 
 btnSend.addEventListener('click', (e) => {
   let msg = document.getElementById('message')
   if (msg.value !== '') {
     let room = document.getElementById('room').value
     let name = document.getElementById('name').value
-    
+
     if (name !== '' && room !== '') {
       socket.emit('message.send', {
         name: document.getElementById('name').value,

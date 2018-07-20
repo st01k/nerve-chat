@@ -9,26 +9,26 @@
   </head>
   <body>
 
-    <nav>
-      <div class="nav-wrapper navbar-fixed grey darken-4">
+    <nav class="grey darken-4">
+      <div class="nav-wrapper navbar-fixed">
         <a href="#" class="brand-logo">nerve chat</a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
           <li>
             <div class="input-field col s6">
+              <i class="material-icons prefix">account_circle</i>
               <input id="name" type="text" class="validate">
               <label for="name">Username</label>
             </div>
           </li>
           <li>
             <div class="input-field col s6">
+              <i class="material-icons prefix">flash_on</i>
               <input id="room" type="text" class="validate">
               <label for="room">Channel</label>
             </div>
           </li>
           <li>
-            <a href="#" id="join_room">
-              <i id="disconnected" class="material-icons red-text">radio_button_unchecked</i>
-              <i id="connected" class="material-icons green-text hide">radio_button_checked</i>
+            <a href="#" id="join_room" class="btn blue">Connect
             </a>
           </li>
         </ul>
@@ -44,7 +44,7 @@
         <textarea id="message" class="materialize-textarea"></textarea>
         <label for="message">Message</label>
       </div>
-      <span><a href="#" id="send_message" class="btn">Send</a></span>
+      <span><a href="#" id="send_message" class="btn blue">Send</a></span>
     </div>
 
     <script src="/socket.io/socket.io.js"></script>
