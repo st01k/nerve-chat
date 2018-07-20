@@ -8,6 +8,7 @@ const express = require('express'),
 const app = express(),
       port = 8080,
       host = ip.address(),
+      // server = app.listen(process.argv[2], host),
       server = app.listen(port, host),
       io = socketio(server)
 
