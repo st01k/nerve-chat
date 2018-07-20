@@ -30,7 +30,13 @@ io.on('connection', (socket) => {
   });
 
   socket.on('message.send', (e) => {
-    socket.emit('message.send', e.message)
-    socket.broadcast.to(e.room).emit('message.send', e.name + ' says: ' + e.message)
+    let now = new Date()
+    let day = now.getDate()
+    let month = now.getMonth() + 1
+    let year = now.getFullYear()
+    let date = `${month}/${day}/${year}`
+    let str = `[${date}] ${e.name}: ${e.message}`
+    socket.emit('message.send', str)
+    socket.broadcast.to(e.room).emit('message.send', str)
   })
 });

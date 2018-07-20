@@ -3,6 +3,21 @@ body {
   color: whitesmoke;
 }
 
-.card .card-content {
+/* .card .card-content {
   padding-bottom: 70px;
+} */
+
+.fixed {
+  position: fixed;
+}
+
+.bottom {
+  bottom: 0;
+}
+
+#input {
+  padding: 5px;
+  padding-top: 10px;
+  border-top: 1px solid whitesmoke;
+  width: 100%;
 }
