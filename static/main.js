@@ -23,6 +23,9 @@ btnJoin.addEventListener('click', (e) => {
 btnSend.addEventListener('click', (e) => {
   let msg = document.getElementById('message')
   if (msg.value !== '') {
+    let room = document.getElementById('room').value
+    let name = document.getElementById('name').value
+    
     if (name !== '' && room !== '') {
       socket.emit('message.send', {
         name: document.getElementById('name').value,
@@ -32,7 +35,7 @@ btnSend.addEventListener('click', (e) => {
       msg.value = ''    
     }
     else {
-      M.toast({ html: 'You must be connected to a channel to post a message'})
+      M.toast({ html: 'You must be connected to a channel to chat'})
     }    
   }
 })
