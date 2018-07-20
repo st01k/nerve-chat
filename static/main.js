@@ -3,32 +3,43 @@ var socket = io ({
   upgrade: false
 });
 
-document.getElementById('join_room').addEventListener('click', (e) => {
-  socket.emit('room.join', document.getElementById('room').value);
+let btnJoin = document.getElementById('join_room')
+let btnSend = document.getElementById('send_message')
+
+// DOM listeners
+btnJoin.addEventListener('click', (e) => {
+  let room = document.getElementById('room').value
+  let name = document.getElementById('name').value
+  if (name !== '' && room !== '') {
+    socket.emit('room.join', {room, name});
+    document.getElementById('disconnected').classList.add('hide')
+    document.getElementById('connected').classList.remove('hide')
+  }
+  else {
+    M.toast({html:'you must enter a username and channel to connect'})
+  }
 });
 
-// document.getElementById('say_hello').addEventListener('click', (e) => {
-//   socket.emit('event', { 
-//     name: document.getElementById('name').value,
-//     room: document.getElementById('room').value});
-// });
-
-document.getElementById('send_message').addEventListener('click', (e) => {
-  if (document.getElementById('message').value !== '') {
+btnSend.addEventListener('click', (e) => {
+  let msg = document.getElementById('message')
+  if (msg.value !== '') {
     socket.emit('message.send', {
       name: document.getElementById('name').value,
       room: document.getElementById('room').value,
-      message: document.getElementById('message').value
+      message: msg.value
     })
-    document.getElementById('message').value = ''
+    msg.value = ''    
   }
 })
 
-var addLi = (message) => {
+let addLi = (message) => {
+  console.log(message)
+  console.log(name)
   let li = document.createElement('li');
   li.appendChild(document.createTextNode(message));
   document.getElementById('list').appendChild(li);
 };
 
-socket.on('event', addLi);
+// socket listeners
+socket.on('join', addLi);
 socket.on('message.send', addLi)

@@ -4,14 +4,14 @@
     <title>nerve chat</title>
 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link type="text/css" rel="stylesheet" href="materialize.min.css"  media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="vendor/materialize.min.css"  media="screen,projection"/>
     <link rel="stylesheet" href="main.css">
   </head>
   <body>
 
     <nav>
       <div class="nav-wrapper navbar-fixed grey darken-4">
-        <a href="#" class="brand-logo pl-10">nerve chat</a>
+        <a href="#" class="brand-logo">nerve chat</a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
           <li>
             <div class="input-field col s6">
@@ -27,21 +27,16 @@
           </li>
           <li>
             <a href="#" id="join_room">
-              <i class="material-icons red-text">radio_button_unchecked</i>
+              <i id="disconnected" class="material-icons red-text">radio_button_unchecked</i>
+              <i id="connected" class="material-icons green-text hide">radio_button_checked</i>
             </a>
           </li>
         </ul>
       </div>
     </nav>
 
-    <div class="row">
-      <div class="col s12 m12">
-        <div class="card grey darken-4">
-          <div class="card-content white-text">
-            <ul id="list"></ul>
-          </div>
-        </div>
-      </div>
+    <div id="list-container">
+      <ul id="list"></ul>
     </div>
 
     <div id="input" class="row fixed bottom valign-wrapper">
@@ -53,7 +48,7 @@
     </div>
 
     <script src="/socket.io/socket.io.js"></script>
-    <script type="text/javascript" src="materialize.min.js"></script>
+    <script type="text/javascript" src="vendor/materialize.min.js"></script>
     <script src="main.js"></script>
   </body>
 </html>

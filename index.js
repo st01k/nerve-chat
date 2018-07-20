@@ -2,41 +2,40 @@ const express = require('express'),
       socketio = require('socket.io'),
       process = require('process'),
       config = require('./config.js'),
-      socketioRedis = require('socket.io-redis');
+      socketioRedis = require('socket.io-redis'),
+      ip = require('ip')
 
-const app = express();
-const server = app.listen(process.argv[2]);
-const io = socketio(server);
+const app = express(),
+      port = 8080,
+      host = ip.address(),
+      server = app.listen(port, host),
+      io = socketio(server)
 
 app.use(express.static('static'));
-// app.use('/scripts', express.static(__dirname + '/node_modules/bootstrap/dist/'));
+// app.use('/materialize', express.static(__dirname + '/node_modules/materialize-css/dist/'));
 
 io.adapter(socketioRedis({host: config.redis_host, port: config.redis_port}));
 io.on('connection', (socket) => {
-  socket.on('room.join', (room) => {
+  
+  // join channel
+  socket.on('room.join', (data) => {
     console.log(socket.rooms);
     Object.keys(socket.rooms).filter((r) => r != socket.id)
     .forEach((r) => socket.leave(r));
 
     setTimeout(() => {
-      socket.join(room);
-      socket.emit('event', 'Joined ' + room);
-      socket.broadcast.to(room).emit('event', 'Someone joined room ' + room);
+      socket.join(data.room);
+      socket.emit('join', 'joined #' + data.room);
+      socket.broadcast.to(data.room).emit('join', data.name + ' joined #' + data.room);
     }, 0);
   })
 
-  socket.on('event', (e) => {
-    socket.broadcast.to(e.room).emit('event', e.name + ' says hello!');
-  });
-
+  // send message
   socket.on('message.send', (e) => {
-    let now = new Date()
-    let day = now.getDate()
-    let month = now.getMonth() + 1
-    let year = now.getFullYear()
-    let date = `${month}/${day}/${year}`
+    let date = new Date().toLocaleString()
     let str = `[${date}] ${e.name}: ${e.message}`
+
     socket.emit('message.send', str)
-    socket.broadcast.to(e.room).emit('message.send', str)
+    socket.broadcast.to(e.room).emit('message.send', e)
   })
 });

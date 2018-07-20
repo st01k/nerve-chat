@@ -1,11 +1,7 @@
 body {
-  background-color: #1e1e1e;
+  background-color: #262626;
   color: whitesmoke;
 }
-
-/* .card .card-content {
-  padding-bottom: 70px;
-} */
 
 .fixed {
   position: fixed;
@@ -20,4 +16,13 @@ body {
   padding-top: 10px;
   border-top: 1px solid whitesmoke;
   width: 100%;
+}
+
+input, textarea {
+  color: whitesmoke;
+}
+
+#list {
+  margin: auto;
+  padding: 50px;
 }
