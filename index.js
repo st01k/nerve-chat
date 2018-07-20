@@ -9,7 +9,9 @@ const app = express(),
       port = 25922,
       host = ip.address(),
       // server = app.listen(process.argv[2], host),
-      server = app.listen(port, host),
+      server = app.listen(port, host, () => {
+        console.log(`http://${host}:${port}`)
+      }),
       io = socketio(server)
 
 app.use(express.static('static'));
@@ -37,6 +39,6 @@ io.on('connection', (socket) => {
     let str = `[${date}] ${e.name}: ${e.message}`
 
     socket.emit('message.send', str)
-    socket.broadcast.to(e.room).emit('message.send', e)
+    socket.broadcast.to(e.room).emit('message.send', str)
   })
 });

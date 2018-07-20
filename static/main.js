@@ -33,8 +33,6 @@ btnSend.addEventListener('click', (e) => {
 })
 
 let addLi = (message) => {
-  console.log(message)
-  console.log(name)
   let li = document.createElement('li');
   li.appendChild(document.createTextNode(message));
   document.getElementById('list').appendChild(li);
