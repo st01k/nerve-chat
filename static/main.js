@@ -43,18 +43,23 @@ btnSend.addEventListener('click', (e) => {
 
 let addLi = (data) => {
   let li = document.createElement('li');
-  
-  let stamp = document.createElement('p')
-  stamp.innerText = data.date
-  stamp.classList.add('orange-text')
-  li.appendChild(stamp)
+  let template = `
+    <small class="orange-text"> ${data.date}</small>
+    <br>
+    <span class=" blue-text bold">${data.name}:</span>
+    <span>${data.msg}</span>
+  `
+  // let stamp = document.createElement('p')
+  // stamp.innerText = data.date
+  // stamp.classList.add('orange-text')
+  // li.appendChild(stamp)
 
-  let name = document.createElement('span')
-  name.innerText = `${data.name}: `
-  name.classList.add('blue-text', 'bold')
-  li.appendChild(name)
+  // let name = document.createElement('span')
+  // name.innerText = `${data.name}: `
+  // name.classList.add('blue-text', 'bold')
+  // li.appendChild(name)
 
-  li.appendChild(document.createTextNode(data.msg));
+  li.innerHTML = template;
   document.getElementById('list').appendChild(li);
 
   scroll()
