@@ -8,7 +8,7 @@ nav .brand-logo {
   padding-right: 15px;
 }
 
-.content {
+#content {
   height: 100%;
 }
 
@@ -36,5 +36,5 @@ input {
 
 #list {
   margin: auto;
-  padding: 50px;
+  padding: 50px 50px 110px 50px;
 }

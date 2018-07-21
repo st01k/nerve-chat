@@ -33,6 +33,10 @@ btnSend.addEventListener('click', (e) => {
         room: document.getElementById('room').value,
         message: msg.value
       })
+
+      let objDiv = document.getElementById("content");
+      objDiv.scrollTop = objDiv.scrollHeight;
+
       msg.value = ''    
     }
     else {
