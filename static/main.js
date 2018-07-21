@@ -33,10 +33,6 @@ btnSend.addEventListener('click', (e) => {
         room: document.getElementById('room').value,
         message: msg.value
       })
-
-      let objDiv = document.getElementById("content");
-      objDiv.scrollTop = objDiv.scrollHeight;
-
       msg.value = ''    
     }
     else {
@@ -46,7 +42,6 @@ btnSend.addEventListener('click', (e) => {
 })
 
 let addLi = (data) => {
-  console.log(data)
   let li = document.createElement('li');
   
   let stamp = document.createElement('p')
@@ -61,6 +56,8 @@ let addLi = (data) => {
 
   li.appendChild(document.createTextNode(data.msg));
   document.getElementById('list').appendChild(li);
+
+  scroll()
 };
 
 let joined = (data) => {
@@ -68,7 +65,14 @@ let joined = (data) => {
   
   li.appendChild(document.createTextNode(data));
   document.getElementById('list').appendChild(li);
+
+  scroll()
 };
+
+function scroll() {
+  let objDiv = document.getElementById("content");
+  window.scrollTo(0, objDiv.scrollHeight)
+}
 
 // socket listeners
 socket.on('join', joined);
