@@ -3,12 +3,16 @@ body {
   color: whitesmoke;
 }
 
+nav {
+  position: fixed;
+}
 nav .brand-logo {
   padding-left: 15px;
   padding-right: 15px;
 }
 
 #content {
+  padding-top: 30px;
   height: 100%;
 }
 

@@ -22,7 +22,7 @@ io.on('connection', (socket) => {
   
   // join channel
   socket.on('room.join', (data) => {
-    console.log(socket.rooms);
+    // console.log(socket.rooms);
     Object.keys(socket.rooms).filter((r) => r != socket.id)
     .forEach((r) => socket.leave(r));
 
