@@ -42,3 +42,8 @@ input {
   margin: auto;
   padding: 50px 50px 110px 50px;
 }
+
+.bold {
+  font-weight: bolder;
+  font-size: 1.2em;
+}
