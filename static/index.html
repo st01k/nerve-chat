@@ -28,8 +28,7 @@
             </div>
           </li>
           <li>
-            <a href="#" id="join_room" class="btn blue">Connect
-            </a>
+            <a href="#" id="join_room" class="btn blue">Connect</a>
           </li>
         </ul>
       </div>
@@ -40,11 +39,13 @@
     </div>
 
     <div id="input" class="row fixed bottom valign-wrapper">
-      <div class="input-field col s12">
-        <input id="message" type="text"></input>
-        <label for="message">Message</label>
-      </div>
-      <span><a href="#" id="send_message" class="btn blue">Send</a></span>
+      <form id="form-message" class="input-field col s12">
+        <div>
+          <input id="message" type="text"></input>
+          <label for="message">Message</label>
+        </div>
+        <span><input type="submit" id="send_message" value="send" class="btn blue hide" /></span>
+      </form>
     </div>
 
     <script src="/socket.io/socket.io.js"></script>
