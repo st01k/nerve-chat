@@ -14,6 +14,24 @@ const app = express(),
       }),
       io = socketio(server)
 
+      require("console-stamp")(console, {
+        pattern : "dd/mm/yyyy HH:MM:ss.l",
+        colors: {
+                stamp: "yellow",
+                label: "white"
+        }
+});
+
+var prevIP;
+app.use(function(req, res, next) {
+        var currIP = req.ip;
+        if (currIP != prevIP) {
+                console.log('accessed from ' + req.ip);
+                prevIP = currIP;
+        }
+        next();
+});
+
 app.use(express.static('static'));
 // app.use('/materialize', express.static(__dirname + '/node_modules/materialize-css/dist/'));
 
