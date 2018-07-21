@@ -67,7 +67,8 @@ let addLi = (data) => {
 
 let joined = (data) => {
   let li = document.createElement('li');
-  
+  li.classList.add('blue-grey-text')
+
   li.appendChild(document.createTextNode(data));
   document.getElementById('list').appendChild(li);
 
@@ -75,8 +76,8 @@ let joined = (data) => {
 };
 
 function scroll() {
-  let objDiv = document.getElementById("content");
-  window.scrollTo(0, objDiv.scrollHeight)
+  let el = document.getElementById("content");
+  window.scrollTo(0, el.scrollHeight)
 }
 
 // socket listeners
