@@ -26,10 +26,8 @@ function joinRoom(e) {
 btnSend.addEventListener('click', (e) => {
   let msg = document.getElementById('message')
   if (msg.value !== '') {
-    let room = document.getElementById('room').value
-    let name = document.getElementById('name').value
-
-    if (name !== '' && room !== '') {
+    let connected = !(document.getElementById('join_room').innerText == 'CONNECT')
+    if (connected) {
       socket.emit('message.send', {
         name: document.getElementById('name').value,
         room: document.getElementById('room').value,
