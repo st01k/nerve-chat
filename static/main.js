@@ -41,12 +41,31 @@ btnSend.addEventListener('click', (e) => {
   }
 })
 
-let addLi = (message) => {
+let addLi = (data) => {
+  console.log(data)
   let li = document.createElement('li');
-  li.appendChild(document.createTextNode(message));
+  
+  let stamp = document.createElement('p')
+  stamp.innerText = data.date
+  stamp.classList.add('orange-text')
+  li.appendChild(stamp)
+
+  let name = document.createElement('span')
+  name.innerText = `${data.name}: `
+  name.classList.add('blue-text', 'bold')
+  li.appendChild(name)
+
+  li.appendChild(document.createTextNode(data.msg));
+  document.getElementById('list').appendChild(li);
+};
+
+let joined = (data) => {
+  let li = document.createElement('li');
+  
+  li.appendChild(document.createTextNode(data));
   document.getElementById('list').appendChild(li);
 };
 
 // socket listeners
-socket.on('join', addLi);
+socket.on('join', joined);
 socket.on('message.send', addLi)

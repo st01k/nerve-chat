@@ -36,9 +36,16 @@ io.on('connection', (socket) => {
   // send message
   socket.on('message.send', (e) => {
     let date = new Date().toLocaleString()
+
+    let data = {
+      date,
+      name: e.name,
+      msg: e.message
+    }
+
     let str = `[${date}] ${e.name}: ${e.message}`
 
-    socket.emit('message.send', str)
-    socket.broadcast.to(e.room).emit('message.send', str)
+    socket.emit('message.send', data)
+    socket.broadcast.to(e.room).emit('message.send', data)
   })
 });
