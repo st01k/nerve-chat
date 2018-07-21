@@ -19,7 +19,7 @@ function joinRoom(e) {
     btnJoin.innerText = 'change channel'
   }
   else {
-    M.toast({html:'you must enter a username and channel to connect'})
+    M.toast({html:'username and channel are required to connect'})
   }
 }
 
@@ -36,7 +36,7 @@ btnSend.addEventListener('click', (e) => {
       msg.value = ''    
     }
     else {
-      M.toast({ html: 'You must be connected to a channel to chat'})
+      M.toast({ html: 'you must be connected to a channel to chat'})
     }    
   }
 })
