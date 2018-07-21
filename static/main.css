@@ -2,6 +2,9 @@ body {
   background-color: #262626;
   color: whitesmoke;
 }
+.content {
+  height: 100%;
+}
 
 .fixed {
   position: fixed;
