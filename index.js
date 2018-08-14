@@ -7,22 +7,10 @@ const express = require('express'),
 
 const app = express(),
       port = 25922,
-      host = ip.address(),
+      host = ip.address()
       // server = app.listen(process.argv[2], host),
-      server = app.listen(port, host, () => {
-        console.log(`http://${host}:${port}`)
-      }),
-      io = socketio(server)
 
-      require("console-stamp")(console, {
-        pattern : "dd/mm/yyyy HH:MM:ss.l",
-        colors: {
-                stamp: "yellow",
-                label: "white"
-        }
-});
-
-var prevIP;
+let prevIP;
 app.use(function(req, res, next) {
         var currIP = req.ip;
         if (currIP != prevIP) {
@@ -34,6 +22,19 @@ app.use(function(req, res, next) {
 
 app.use(express.static('static'));
 // app.use('/materialize', express.static(__dirname + '/node_modules/materialize-css/dist/'));
+
+const server = app.listen(port, host, () => {
+        console.log(`http://${host}:${port}`)
+      }),
+      io = socketio(server)
+
+      require("console-stamp")(console, {
+        pattern : "dd/mm/yyyy HH:MM:ss.l",
+        colors: {
+                stamp: "yellow",
+                label: "white"
+        }
+});
 
 io.adapter(socketioRedis({host: config.redis_host, port: config.redis_port}));
 io.on('connection', (socket) => {
