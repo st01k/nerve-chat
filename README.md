@@ -1,11 +1,14 @@
 # nerve-chat
 
 This app is a multi-server capable chat (messaging) interface built on redis, using socket.io.
-It requires an instance of Redis running on port 16379.  
 
 ## To Use
 
-To clone and run this repository you'll need [Git](https://git-scm.com) and [Node.js](https://nodejs.org/en/download/) (which comes with [npm](http://npmjs.com)) installed on your computer. From your command line:
+To clone and run this repository you'll need [Git](https://git-scm.com) and [Node.js](https://nodejs.org/en/download/) (which comes with [npm](http://npmjs.com)) installed on your computer. 
+
+Access to a redis instance is required.  This app accesses the redis service on port 16379.
+
+## From your command line:
 
 ```bash
 # Clone this repository
